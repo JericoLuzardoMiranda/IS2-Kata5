@@ -20,8 +20,22 @@ public class OperationCommand implements Command {
             }
 
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            return nanOutput();
         }
+    }
+
+    private Output nanOutput() {
+        return new Output() {
+            @Override
+            public int response() {
+                return 405;
+            }
+
+            @Override
+            public String result() {
+                return "Not a number";
+            }
+        };
     }
 
     private Output invalidOperationOutput() {
